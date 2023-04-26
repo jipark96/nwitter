@@ -28,6 +28,16 @@ const Home = ({ userObj }) => {
     setNweet(e.target.value);
   };
 
+  const onFileChange = (e) => {
+    const {
+      target: { files },
+    } = e;
+    const theFile = files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {};
+    reader.readAsDataURL(theFile);
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -38,6 +48,7 @@ const Home = ({ userObj }) => {
           placeholder="지금 너의 상태는?"
           maxLength={120}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Nweet" />
       </form>
       <div>
